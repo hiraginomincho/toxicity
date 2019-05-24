@@ -2,12 +2,10 @@
 
 console.log("Toxicity: Using TensorFlow.js version " + tf.version.tfjs);
 
-const threshold = 0.9;
-
 let model;
 
 const predict = async() => {
-  model = await toxicity.load(threshold);
+  model = await toxicity.load();
   console.log("Toxicity: ready");
   Toxicity.ready();
 };
