@@ -4,11 +4,23 @@ console.log("Toxicity: Using TensorFlow.js version " + tf.version.tfjs);
 
 const threshold = 0.9;
 
+let model;
+
+const predict = async() => {
+  model = await toxicity.load(threshold);
+  Toxicity.ready();
+};
+
 function classifyTextData(text) {
-  toxicity.load(threshold).then(model => {
-    const sentences = [text];
-    model.classify(sentences).then(predictions => {
-        console.log(predictions);
-    });
+  const sentences = [text];
+  model.classify(sentences).then(predictions => {
+    var result = [];
+    for (let i = 0; i < predictions.length; i++) {
+      result.push([predictions[i]["label"], predictions[i]["results"][0]["probabilities"][1]]);//, predictions[i]["results"]["probabilities"]]);
+    }
+    console.log("Toxicity: " + JSON.stringify(result));
+    Toxicity.reportResult(JSON.stringify(result));
   });
 }
+
+predict();
