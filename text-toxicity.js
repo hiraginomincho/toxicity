@@ -8,6 +8,7 @@ let model;
 
 const predict = async() => {
   model = await toxicity.load(threshold);
+  console.log("Toxicity: ready");
   Toxicity.ready();
 };
 
