@@ -16,7 +16,7 @@ function classifyTextData(text) {
   model.classify(sentences).then(predictions => {
     var result = [];
     for (let i = 0; i < predictions.length; i++) {
-      result.push([predictions[i]["label"], predictions[i]["results"][0]["probabilities"][1]]);//, predictions[i]["results"]["probabilities"]]);
+      result.push([predictions[i]["label"], predictions[i]["results"][0]["probabilities"][1]]);
     }
     console.log("Toxicity: " + JSON.stringify(result));
     Toxicity.reportResult(JSON.stringify(result));
