@@ -13,6 +13,7 @@ const predict = async() => {
 };
 
 function classifyTextData(text) {
+  console.log("Toxicity: text is " + text);
   const sentences = [text];
   model.classify(sentences).then(predictions => {
     var result = [];
