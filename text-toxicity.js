@@ -10,7 +10,8 @@ const predict = async() => {
   Toxicity.ready();
 };
 
-function classifyTextData(text) {
+function classifyTextData(encodedText) {
+  var text = decodeURIComponent(encodedText);
   console.log("Toxicity: text is " + text);
   const sentences = [text];
   model.classify(sentences).then(predictions => {
